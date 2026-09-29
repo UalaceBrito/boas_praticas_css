@@ -300,10 +300,10 @@ Antes de considerar o refactor concluído, valide:
 
 ## 👤 Autor
 
-- **Nome:** [Seu Nome Aqui]
-- **Curso:** [Seu Curso Aqui]
-- **Instituição:** [Sua Instituição Aqui]
-- **Contato:** [seu@email.com]
+- **Nome:** [Uálace Brito]
+- **Curso:** [DEV FULL STACK PYTHON]
+- **Instituição:** [EBAC]
+- **Contato:** [dev.full.ualace@gmail.com]
 
 ---
 
