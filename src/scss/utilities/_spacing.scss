@@ -1,0 +1,20 @@
+// Utilities geradas em loop — mantém o HTML livre de estilo inline
+@use 'sass:map';
+@use '../abstracts/variables' as *;
+
+$spacers: (
+  0: 0,
+  1: $space-1,
+  2: $space-2,
+  3: $space-3,
+  4: $space-4,
+  6: $space-6,
+  8: $space-8,
+);
+
+@each $key, $value in $spacers {
+  .u-mt-#{$key} { margin-top: $value !important; }
+  .u-mb-#{$key} { margin-bottom: $value !important; }
+  .u-p-#{$key}  { padding: $value !important; }
+  .u-gap-#{$key} { gap: $value !important; }
+}

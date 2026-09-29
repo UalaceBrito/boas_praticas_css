@@ -1,0 +1,20 @@
+{
+  "name": "bem-refactor",
+  "version": "1.0.0",
+  "description": "Refatoração BEM + ITCSS escalável",
+  "scripts": {
+    "dev": "sass --watch src/scss/main.scss:dist/css/main.css --style=expanded",
+    "build": "sass src/scss/main.scss:dist/css/main.css --style=compressed --no-source-map",
+    "lint:css": "stylelint \"src/scss/**/*.scss\"",
+    "lint:html": "htmlhint src/**/*.html",
+    "lint": "npm run lint:css && npm run lint:html",
+    "serve": "npx serve src"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "stylelint-order": "^6.0.0",
+    "htmlhint": "^1.1.4"
+  }
+}

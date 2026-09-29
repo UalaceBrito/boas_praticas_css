@@ -1,0 +1,24 @@
+@use '../abstracts/variables' as *;
+
+.toast {
+  position: fixed;
+  bottom: $space-6;
+  right: $space-6;
+  z-index: $z-toast;
+
+  background: $color-neutral-900;
+  color: $color-neutral-0;
+  padding: $space-3 $space-5;
+  border-radius: $radius-md;
+  box-shadow: $shadow-lg;
+
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity $transition-base, transform $transition-base;
+  pointer-events: none;
+
+  &--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

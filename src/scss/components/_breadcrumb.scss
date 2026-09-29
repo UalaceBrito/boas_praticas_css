@@ -1,0 +1,96 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// =============================================================
+// BLOCO: breadcrumb
+// Navegação hierárquica — "você está aqui"
+// Uso: <nav class="breadcrumb"><ol class="breadcrumb__list">...
+// =============================================================
+.breadcrumb {
+  width: 100%;
+  padding-block: $space-4;
+  font-size: $font-size-sm;
+
+  // ---------- Elementos ----------
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $space-2;
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    color: $color-neutral-500;
+    line-height: $line-height-tight;
+
+    // Separador "/" entre itens (exceto no último)
+    &:not(:last-child)::after {
+      content: '/';
+      display: inline-block;
+      margin-left: $space-2;
+      color: $color-neutral-200;
+      font-weight: 400;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    // Item atual — negrito, sem link
+    &--current {
+      color: $color-neutral-900;
+      font-weight: 600;
+
+      // Nunca recebe separador duplicado
+      &::after { content: none; }
+    }
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-primary-500;
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+      border-radius: $radius-sm;
+    }
+  }
+
+  // ---------- Modificadores ----------
+  &--compact {
+    padding-block: $space-2;
+    font-size: $font-size-xs;
+  }
+
+  &--centered {
+    .breadcrumb__list {
+      justify-content: center;
+    }
+  }
+
+  // Variante com seta ">" em vez de "/"
+  &--arrow {
+    .breadcrumb__item:not(:last-child)::after {
+      content: '›';
+      font-size: $font-size-md;
+    }
+  }
+
+  // Variante com fundo (caixa destacada)
+  &--boxed {
+    background: $color-neutral-50;
+    border: 1px solid $color-neutral-200;
+    border-radius: $radius-md;
+    padding-inline: $space-4;
+  }
+}

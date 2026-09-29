@@ -1,0 +1,79 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/placeholders';
+
+.button {
+  @extend %button-reset;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+
+  padding: $space-3 $space-5;
+  border-radius: $radius-md;
+
+  font-size: $font-size-md;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+
+  transition:
+    background $transition-fast,
+    color $transition-fast,
+    transform $transition-fast,
+    box-shadow $transition-fast;
+
+  background: $color-neutral-700;
+  color: $color-neutral-0;
+  box-shadow: none;
+
+  &:hover {
+    background: $color-neutral-900;
+    box-shadow: none;
+  }
+  &:active { transform: translateY(1px); }
+  &:focus-visible { @include focus-ring; }
+
+  &:disabled,
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // ---------- Modificadores de cor ----------
+  &--primary {
+    background: $color-primary-500;
+    &:hover { background: $color-primary-600; }
+  }
+
+  &--danger {
+    background: $color-danger-500;
+    &:hover { background: darken($color-danger-500, 10%); }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $color-neutral-900;
+    border: 1px solid $color-neutral-200;
+    &:hover { background: $color-neutral-100; }
+  }
+
+  // ---------- Modificadores de tamanho ----------
+  &--small {
+    padding: $space-2 $space-3;
+    font-size: $font-size-sm;
+  }
+
+  &--large {
+    padding: $space-4 $space-8;
+    font-size: $font-size-lg;
+  }
+
+  // ---------- Modificadores de layout ----------
+  &--block {
+    display: flex;
+    width: 100%;
+  }
+}

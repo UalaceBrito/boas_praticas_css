@@ -1,0 +1,22 @@
+@use 'sass:math';
+@use 'sass:map';
+
+/// Converte px para rem (base 16)
+@function rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+/// Retorna cor da paleta por chave
+@function color($key) {
+  $palette: (
+    'primary': #e63946,
+    'success': #16a34a,
+    'danger':  #dc2626,
+  );
+  @return map.get($palette, $key);
+}
+
+/// Escurece uma cor em X%
+@function shade($color, $percent) {
+  @return mix(black, $color, $percent);
+}

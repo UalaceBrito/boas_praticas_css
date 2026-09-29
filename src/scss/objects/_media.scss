@@ -1,0 +1,42 @@
+@use '../abstracts/variables' as *;
+
+// =============================================================
+// OBJETO: media
+// Layout imagem + corpo lado a lado (padrão Nicole Sullivan)
+// =============================================================
+.media {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-4;
+
+  &__figure {
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+  &__image {
+    display: block;
+    border-radius: $radius-md;
+    object-fit: cover;
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;   // evita overflow em flex
+  }
+
+  // ---------- Modificadores ----------
+  &--center {
+    align-items: center;
+  }
+
+  &--reverse {
+    flex-direction: row-reverse;
+  }
+
+  &--stack-mobile {
+    @media (max-width: 640px) {
+      flex-direction: column;
+    }
+  }
+}

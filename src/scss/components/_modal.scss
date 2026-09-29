@@ -1,0 +1,272 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// =============================================================
+// BLOCO: modal
+// Diálogo modal acessível — abre com .modal--open via JS
+// Uso:
+//   <div class="modal modal--md" id="x" role="dialog" aria-modal="true">
+//     <div class="modal__backdrop" data-modal-close></div>
+//     <div class="modal__dialog">
+//       <header class="modal__header">
+//         <h2 class="modal__title">...</h2>
+//         <button class="modal__close" data-modal-close>×</button>
+//       </header>
+//       <div class="modal__body">...</div>
+//       <footer class="modal__footer">...</footer>
+//     </div>
+//   </div>
+// =============================================================
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: $z-modal;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-4;
+
+  // Estado fechado (padrão) — animação de saída
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity $transition-base,
+    visibility $transition-base;
+
+  // ---------- Modificador de estado ----------
+  &--open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    .modal__dialog {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  // ---------- Modificadores de tamanho ----------
+  &--sm {
+    .modal__dialog { max-width: 400px; }
+  }
+
+  &--md {
+    .modal__dialog { max-width: 600px; }
+  }
+
+  &--lg {
+    .modal__dialog { max-width: 900px; }
+  }
+
+  &--xl {
+    .modal__dialog { max-width: 1140px; }
+  }
+
+  &--full {
+    padding: 0;
+
+    .modal__dialog {
+      max-width: 100%;
+      height: 100%;
+      max-height: 100%;
+      border-radius: 0;
+    }
+  }
+
+  // ---------- Modificadores de posição ----------
+  &--top {
+    align-items: flex-start;
+    padding-top: $space-12;
+  }
+
+  &--center {
+    align-items: center;
+  }
+
+  &--bottom {
+    align-items: flex-end;
+    padding-bottom: 0;
+
+    .modal__dialog {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      transform: translateY(100%);
+    }
+
+    &.modal--open .modal__dialog {
+      transform: translateY(0);
+    }
+  }
+
+  // ---------- Modificadores de animação ----------
+  &--fade {
+    .modal__dialog {
+      transform: none;
+      opacity: 0;
+    }
+
+    &.modal--open .modal__dialog {
+      transform: none;
+      opacity: 1;
+    }
+  }
+
+  &--zoom {
+    .modal__dialog {
+      transform: scale(0.8);
+    }
+
+    &.modal--open .modal__dialog {
+      transform: scale(1);
+    }
+  }
+
+  &--slide-left {
+    .modal__dialog {
+      transform: translateX(100%);
+    }
+
+    &.modal--open .modal__dialog {
+      transform: translateX(0);
+    }
+  }
+
+  // ---------- Elementos ----------
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(17, 24, 39, 0.6);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    cursor: pointer;
+
+    // Fallback para navegadores antigos sem backdrop-filter
+    @supports not (backdrop-filter: blur(3px)) {
+      background: rgba(17, 24, 39, 0.75);
+    }
+  }
+
+  &__dialog {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 600px;
+    max-height: calc(100vh - #{$space-8});
+
+    background: $color-neutral-0;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-lg;
+    overflow: hidden;
+
+    // Estado inicial — animação de entrada
+    transform: translateY(16px) scale(0.98);
+    opacity: 0;
+    transition:
+      transform $transition-base,
+      opacity $transition-base;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-3;
+
+    padding: $space-4 $space-5;
+    border-bottom: 1px solid $color-neutral-200;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: $font-size-lg;
+    font-weight: 700;
+    line-height: $line-height-tight;
+    color: $color-neutral-900;
+    margin: 0;
+  }
+
+  &__subtitle {
+    font-size: $font-size-sm;
+    color: $color-neutral-500;
+    margin-top: $space-1;
+  }
+
+  &__close {
+    flex-shrink: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: $space-2;
+    border-radius: $radius-md;
+    font-size: $font-size-xl;
+    line-height: 1;
+    color: $color-neutral-500;
+    transition:
+      background $transition-fast,
+      color $transition-fast;
+
+    &:hover {
+      background: $color-neutral-100;
+      color: $color-neutral-900;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  &__body {
+    padding: $space-5;
+    overflow-y: auto;
+    flex: 1;
+    color: $color-neutral-700;
+    line-height: $line-height-base;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: $space-3;
+
+    padding: $space-4 $space-5;
+    border-top: 1px solid $color-neutral-200;
+    background: $color-neutral-50;
+    flex-shrink: 0;
+
+    &--between {
+      justify-content: space-between;
+    }
+
+    &--stack {
+      flex-direction: column-reverse;
+
+      .button { width: 100%; }
+    }
+  }
+
+  // ---------- Estado de loading (durante submit) ----------
+  &--loading {
+    .modal__dialog {
+      pointer-events: none;
+    }
+
+    .modal__body {
+      opacity: 0.5;
+    }
+  }
+}
+
+// =============================================================
+// LOCK DE SCROLL — aplicado no <body> via JS
+// =============================================================
+body.has-modal {
+  overflow: hidden;
+  padding-right: var(--scrollbar-width, 0);
+}

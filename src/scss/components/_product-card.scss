@@ -1,0 +1,112 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  background: $color-neutral-0;
+  border: 1px solid $color-neutral-200;
+  border-radius: 0;
+  overflow: hidden;
+
+  transition: transform $transition-base;
+
+  &:hover {
+    transform: translateY(-2px);
+
+    .product-card__image {
+      transform: scale(1.02);
+    }
+  }
+
+  &--highlight {
+    border-color: $color-neutral-200;
+    box-shadow: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: $color-primary-500;
+      z-index: 2;
+    }
+  }
+
+  &__link {
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+
+    &:focus-visible { @include focus-ring; }
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+
+    transition: transform $transition-base;
+  }
+
+  &__badge {
+    position: absolute;
+    top: $space-3;
+    right: $space-3;
+    z-index: 2;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+    padding: $space-4;
+    flex: 1;
+  }
+
+  &__title {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  &__title-link {
+    color: $color-neutral-900;
+    text-decoration: none;
+
+    &:hover { color: $color-primary-500; }
+    &:focus-visible { @include focus-ring; }
+  }
+
+  &__description {
+    color: $color-neutral-500;
+    font-size: $font-size-sm;
+    @include line-clamp(2);
+  }
+
+  &__pricing {
+    display: flex;
+    align-items: baseline;
+    gap: $space-2;
+    margin-top: auto;
+  }
+
+  &__price-old {
+    font-size: $font-size-sm;
+    color: $color-neutral-500;
+    text-decoration: line-through;
+  }
+
+  &__price {
+    font-size: $font-size-2xl;
+    font-weight: 700;
+    color: $color-primary-500;
+  }
+
+  &__cta {
+    margin-top: $space-2;
+  }
+}

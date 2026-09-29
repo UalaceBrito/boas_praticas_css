@@ -1,0 +1,43 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  &__item {
+    color: $color-neutral-700;
+  }
+
+  &--inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+  }
+}
+
+.social-list {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &__item { }
+
+  &__link {
+    color: $color-neutral-500;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-neutral-0;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+      border-radius: $radius-sm;
+    }
+  }
+}

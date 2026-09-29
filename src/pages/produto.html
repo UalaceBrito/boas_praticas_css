@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tênis Runner — MinhaLoja">
+  <title>MinhaLoja | Tênis Runner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/css/main.css">
+</head>
+<body class="page page--produto">
+
+  <!-- ============================================================
+       BLOCO: header
+       ============================================================ -->
+  <header class="header header--sticky" role="banner">
+    <div class="container header__container">
+
+      <a class="header__brand" href="../index.html" aria-label="Página inicial">
+        <span class="header__brand-icon" aria-hidden="true">🛍️</span>
+        <span class="header__brand-name">MinhaLoja</span>
+      </a>
+
+      <nav class="header__nav nav" aria-label="Navegação principal">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a class="nav__link" href="../index.html">Home</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link nav__link--active" href="#" aria-current="page">Produtos</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#">Ofertas</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#">Contato</a>
+          </li>
+        </ul>
+      </nav>
+
+      <form class="header__search search" role="search" onsubmit="event.preventDefault();">
+        <label class="search__label visually-hidden" for="search-input">Buscar produtos</label>
+        <input
+          class="search__input"
+          id="search-input"
+          type="search"
+          placeholder="Buscar produtos..."
+          autocomplete="off">
+        <button class="search__button" type="submit" aria-label="Buscar">🔍</button>
+      </form>
+
+      <button class="header__cart cart-button" aria-label="Carrinho com 1 item">
+        <span class="cart-button__icon" aria-hidden="true">🛒</span>
+        <span class="cart-button__badge badge badge--danger">1</span>
+      </button>
+
+    </div>
+  </header>
+
+  <main class="page__main">
+    <div class="container">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Você está em">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item">
+            <a class="breadcrumb__link" href="../index.html">Home</a>
+          </li>
+          <li class="breadcrumb__item">
+            <a class="breadcrumb__link" href="#">Calçados</a>
+          </li>
+          <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">
+            Tênis Runner
+          </li>
+        </ol>
+      </nav>
+
+      <!-- Detalhe do produto -->
+      <article class="product-detail">
+
+        <div class="product-detail__gallery">
+          <img
+            class="product-detail__image"
+            src="../assets/img/products/tenis-runner.jpg"
+            alt="Tênis Runner azul visto de lado"
+            loading="eager"
+            width="800" height="800">
+        </div>
+
+        <div class="product-detail__info">
+
+          <span class="badge badge--success product-detail__badge">-30% OFF</span>
+
+          <h1 class="product-detail__title">Tênis Runner</h1>
+
+          <p class="product-detail__description">
+            Tênis leve e respirável, ideal para corridas diárias e treinos longos.
+            Solado em borracha antiderrapante e amortecimento em EVA de alta densidade.
+            Cabedal em mesh que garante ventilação mesmo nos dias mais quentes.
+          </p>
+
+          <div class="product-detail__pricing">
+            <span class="product-detail__price-old">R$ 499,00</span>
+            <span class="product-detail__price">R$ 349,90</span>
+            <span class="product-detail__installments">
+              ou 12x de R$ 29,16 sem juros
+            </span>
+          </div>
+
+          <div class="product-detail__options">
+
+            <div class="field product-detail__field">
+              <label class="field__label field__label--required" for="tamanho">Tamanho</label>
+              <select class="field__select" id="tamanho" name="tamanho">
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40" selected>40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+              </select>
+            </div>
+
+            <div class="field product-detail__field">
+              <label class="field__label field__label--required" for="cor">Cor</label>
+              <select class="field__select" id="cor" name="cor">
+                <option value="azul" selected>Azul</option>
+                <option value="preto">Preto</option>
+                <option value="branco">Branco</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="product-detail__actions">
+            <button
+              class="button button--primary button--large button--block"
+              type="button"
+              data-product-id="1"
+              data-modal-open="modal-cart">
+              Adicionar ao carrinho
+            </button>
+
+            <button class="button button--ghost button--large" type="button">
+              ♡ Favoritar
+            </button>
+          </div>
+
+          <ul class="product-detail__meta">
+            <li class="product-detail__meta-item">🚚 Frete grátis acima de R$ 199</li>
+            <li class="product-detail__meta-item">↩️ Troca em até 30 dias</li>
+            <li class="product-detail__meta-item">🔒 Compra 100% segura</li>
+          </ul>
+
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal modal--md" id="modal-cart" role="dialog" aria-modal="true" aria-labelledby="modal-cart-title">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__dialog">
+      <header class="modal__header">
+        <h2 class="modal__title" id="modal-cart-title">Produto adicionado</h2>
+        <button class="modal__close" aria-label="Fechar" data-modal-close>×</button>
+      </header>
+      <div class="modal__body">
+        <p>Tênis Runner foi adicionado ao seu carrinho com sucesso.</p>
+      </div>
+      <footer class="modal__footer">
+        <button class="button button--ghost" data-modal-close>Continuar comprando</button>
+        <a class="button button--primary" href="#">Ir para o carrinho</a>
+      </footer>
+    </div>
+  </div>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__container">
+      <p class="footer__copy">© 2025 MinhaLoja — Todos os direitos reservados.</p>
+      <ul class="footer__social social-list">
+        <li class="social-list__item"><a class="social-list__link" href="#">Instagram</a></li>
+        <li class="social-list__item"><a class="social-list__link" href="#">Twitter</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>

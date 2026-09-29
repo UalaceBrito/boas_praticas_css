@@ -1,0 +1,348 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/placeholders';
+
+// =============================================================
+// BLOCO: field
+// Wrapper de formulário — agrupa label + input + helper + erro
+// Uso: <div class="field"><label class="field__label">...
+// =============================================================
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  width: 100%;
+
+  // ---------- Modificadores de layout ----------
+  &--inline {
+    flex-direction: row;
+    align-items: center;
+    gap: $space-3;
+
+    .field__label {
+      flex-shrink: 0;
+      min-width: 120px;
+    }
+  }
+
+  &--compact {
+    gap: $space-1;
+
+    .field__input,
+    .field__textarea,
+    .field__select {
+      padding: $space-2 $space-3;
+      font-size: $font-size-sm;
+    }
+  }
+
+  // ---------- Modificadores de estado ----------
+  &--error {
+    .field__label { color: $color-danger-500; }
+
+    .field__input,
+    .field__textarea,
+    .field__select {
+      border-color: $color-danger-500;
+
+      &:focus {
+        border-color: $color-danger-500;
+        box-shadow: 0 0 0 3px rgba($color-danger-500, 0.15);
+      }
+    }
+  }
+
+  &--success {
+    .field__input,
+    .field__textarea,
+    .field__select {
+      border-color: $color-success-500;
+
+      &:focus {
+        border-color: $color-success-500;
+        box-shadow: 0 0 0 3px rgba($color-success-500, 0.15);
+      }
+    }
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  // ---------- Elementos ----------
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-neutral-700;
+    line-height: $line-height-tight;
+
+    &--required::after {
+      content: ' *';
+      color: $color-danger-500;
+      font-weight: 400;
+    }
+
+    &--optional::after {
+      content: ' (opcional)';
+      color: $color-neutral-500;
+      font-weight: 400;
+      font-size: $font-size-xs;
+    }
+  }
+
+  &__input,
+  &__textarea,
+  &__select {
+    width: 100%;
+    padding: $space-3 $space-4;
+    font-size: $font-size-md;
+    font-family: inherit;
+    color: $color-neutral-900;
+    background: $color-neutral-0;
+    border: 1px solid $color-neutral-200;
+    border-radius: $radius-md;
+    outline: none;
+    transition:
+      border-color $transition-fast,
+      box-shadow $transition-fast,
+      background $transition-fast;
+
+    &::placeholder {
+      color: $color-neutral-500;
+      opacity: 1;
+    }
+
+    &:hover:not(:disabled):not(:focus) {
+      border-color: $color-neutral-500;
+    }
+
+    &:focus {
+      border-color: $color-primary-500;
+      box-shadow: 0 0 0 3px $color-primary-100;
+    }
+
+    &:disabled {
+      background: $color-neutral-100;
+      color: $color-neutral-500;
+      cursor: not-allowed;
+    }
+
+    &[readonly] {
+      background: $color-neutral-50;
+      cursor: default;
+    }
+
+    &[aria-invalid='true'] {
+      border-color: $color-danger-500;
+
+      &:focus {
+        box-shadow: 0 0 0 3px rgba($color-danger-500, 0.15);
+      }
+    }
+  }
+
+  &__textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: $line-height-base;
+  }
+
+  &__select {
+    appearance: none;
+    padding-right: $space-8;
+    cursor: pointer;
+
+    // Seta customizada via SVG inline
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='4 6 8 10 12 6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right $space-3 center;
+    background-size: 16px;
+  }
+
+  &__helper {
+    font-size: $font-size-xs;
+    color: $color-neutral-500;
+    line-height: $line-height-base;
+
+    &--error {
+      color: $color-danger-500;
+      font-weight: 500;
+    }
+
+    &--success {
+      color: $color-success-500;
+      font-weight: 500;
+    }
+  }
+
+  // ---------- Checkbox / Radio ----------
+  &__check {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    cursor: pointer;
+    user-select: none;
+    font-size: $font-size-sm;
+    color: $color-neutral-700;
+
+    &--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__check-input {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    flex-shrink: 0;
+    accent-color: $color-primary-500;
+    cursor: pointer;
+
+    &:focus-visible {
+      @include focus-ring;
+      border-radius: $radius-sm;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &__check-label {
+    line-height: $line-height-tight;
+  }
+
+  // ---------- Grupo de checkboxes / radios ----------
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    &--inline {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: $space-4;
+    }
+  }
+}
+
+// =============================================================
+// BLOCO: input-group
+// Input + botão colados (busca, cupom, etc.)
+// Uso: <div class="input-group"><input class="input-group__input">...
+// =============================================================
+.input-group {
+  display: flex;
+  width: 100%;
+
+  &__input {
+    flex: 1;
+    width: 100%;
+    padding: $space-3 $space-4;
+    font-size: $font-size-md;
+    font-family: inherit;
+    color: $color-neutral-900;
+    background: $color-neutral-0;
+    border: 1px solid $color-neutral-200;
+    border-radius: $radius-md 0 0 $radius-md;
+    border-right: 0;
+    outline: none;
+    transition:
+      border-color $transition-fast,
+      box-shadow $transition-fast;
+
+    &::placeholder { color: $color-neutral-500; }
+
+    &:focus {
+      border-color: $color-primary-500;
+      box-shadow: 0 0 0 3px $color-primary-100;
+      z-index: 1;
+    }
+  }
+
+  &__button {
+    flex-shrink: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  // ---------- Modificadores ----------
+  &--reverse {
+    flex-direction: row-reverse;
+
+    .input-group__input {
+      border-radius: 0 $radius-md $radius-md 0;
+      border-right: 1px solid $color-neutral-200;
+      border-left: 0;
+    }
+
+    .input-group__button {
+      border-radius: $radius-md 0 0 $radius-md;
+    }
+  }
+
+  &--pill {
+    .input-group__input { border-radius: $radius-full 0 0 $radius-full; }
+    .input-group__button { border-radius: 0 $radius-full $radius-full 0; }
+  }
+
+  &--attached {
+    .input-group__input { border-radius: $radius-md; }
+    .input-group__button {
+      border-radius: $radius-md;
+      margin-left: $space-2;
+    }
+  }
+}
+
+// =============================================================
+// BLOCO: search (derivado de field, específico de header)
+// =============================================================
+.search {
+  display: flex;
+  align-items: stretch;
+  background: $color-neutral-50;
+  border: 1px solid $color-neutral-200;
+  border-radius: $radius-md;
+  overflow: hidden;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+
+  &:focus-within {
+    border-color: $color-primary-500;
+    box-shadow: 0 0 0 3px $color-primary-100;
+  }
+
+  &__label { }
+
+  &__input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    padding: $space-2 $space-3;
+    font-size: $font-size-sm;
+    color: $color-neutral-900;
+    outline: none;
+
+    &::placeholder { color: $color-neutral-500; }
+  }
+
+  &__button {
+    background: transparent;
+    border: 0;
+    padding-inline: $space-3;
+    cursor: pointer;
+    font-size: $font-size-md;
+    color: $color-neutral-700;
+    transition: color $transition-fast;
+
+    &:hover { color: $color-primary-500; }
+
+    &:focus-visible {
+      @include focus-ring;
+      border-radius: $radius-sm;
+    }
+  }
+}

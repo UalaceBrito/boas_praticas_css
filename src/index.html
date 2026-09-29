@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MinhaLoja — as melhores ofertas em calçados e acessórios esportivos.">
+  <title>MinhaLoja | Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/css/main.css">
+</head>
+<body class="page page--home">
+
+  <!-- ============================================================
+       BLOCO: header
+       ============================================================ -->
+  <header class="header header--sticky" role="banner">
+    <div class="container header__container">
+
+      <a class="header__brand" href="index.html" aria-label="Página inicial">
+        <span class="header__brand-icon" aria-hidden="true">🛍️</span>
+        <span class="header__brand-name">MinhaLoja</span>
+      </a>
+
+      <nav class="header__nav nav" aria-label="Navegação principal">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a class="nav__link nav__link--active" href="index.html" aria-current="page">Home</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#produtos">Produtos</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#ofertas">Ofertas</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#contato">Contato</a>
+          </li>
+        </ul>
+      </nav>
+
+      <form class="header__search search" role="search" onsubmit="event.preventDefault();">
+        <label class="search__label visually-hidden" for="search-input">Buscar produtos</label>
+        <input
+          class="search__input"
+          id="search-input"
+          type="search"
+          placeholder="Buscar produtos..."
+          autocomplete="off">
+        <button class="search__button" type="submit" aria-label="Buscar">🔍</button>
+      </form>
+
+      <button class="header__cart cart-button" aria-label="Carrinho com 3 itens">
+        <span class="cart-button__icon" aria-hidden="true">🛒</span>
+        <span class="cart-button__badge badge badge--danger">3</span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ============================================================
+       BLOCO: hero — com imagem de fundo
+       ============================================================ -->
+  <section class="hero hero--image" aria-labelledby="hero-title">
+    <div class="container hero__container">
+      <h1 class="hero__title" id="hero-title">
+        As melhores ofertas da temporada
+      </h1>
+      <p class="hero__subtitle">
+        Frete grátis acima de R$ 199 e parcelamento em até 12x sem juros.
+      </p>
+      <a class="button button--primary button--large hero__cta" href="#produtos">
+        Ver produtos →
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BLOCO: section + product-grid + product-card
+       ============================================================ -->
+  <main class="page__main">
+
+    <section class="section" id="produtos" aria-labelledby="destaques-title">
+      <div class="container">
+
+        <header class="section__header">
+          <h2 class="section__title" id="destaques-title">Destaques da semana</h2>
+          <a class="section__link link link--arrow" href="#">Ver todos</a>
+        </header>
+
+        <ul class="product-grid product-grid--three-columns">
+
+          <!-- Produto 1 — Tênis Runner -->
+          <li class="product-grid__item">
+            <article class="product-card product-card--highlight">
+              <span class="badge badge--success product-card__badge">-30%</span>
+
+              <a class="product-card__link" href="pages/produto.html" aria-label="Ver Tênis Runner">
+                <img
+                  class="product-card__image"
+                  src="assets/img/products/tenis-runner.jpg"
+                  alt="Tênis Runner azul"
+                  loading="lazy"
+                  width="600" height="450">
+              </a>
+
+              <div class="product-card__body">
+                <h3 class="product-card__title">
+                  <a class="product-card__title-link" href="pages/produto.html">Tênis Runner</a>
+                </h3>
+                <p class="product-card__description">
+                  Ideal para corridas diárias e treinos longos.
+                </p>
+
+                <div class="product-card__pricing">
+                  <span class="product-card__price-old">R$ 499,00</span>
+                  <span class="product-card__price">R$ 349,90</span>
+                </div>
+
+                <button
+                  class="button button--primary button--block product-card__cta"
+                  type="button"
+                  data-product-id="1">
+                  Adicionar ao carrinho
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- Produto 2 — Tênis Casual Urban -->
+          <li class="product-grid__item">
+            <article class="product-card">
+              <span class="badge badge--danger product-card__badge">-15%</span>
+
+              <a class="product-card__link" href="pages/produto.html" aria-label="Ver Tênis Casual Urban">
+                <img
+                  class="product-card__image"
+                  src="assets/img/products/tenis-casual.jpg"
+                  alt="Tênis Casual Urban branco"
+                  loading="lazy"
+                  width="600" height="450">
+              </a>
+
+              <div class="product-card__body">
+                <h3 class="product-card__title">
+                  <a class="product-card__title-link" href="pages/produto.html">Tênis Casual Urban</a>
+                </h3>
+                <p class="product-card__description">
+                  Estilo urbano com conforto para o dia a dia.
+                </p>
+
+                <div class="product-card__pricing">
+                  <span class="product-card__price-old">R$ 329,00</span>
+                  <span class="product-card__price">R$ 279,65</span>
+                </div>
+
+                <button
+                  class="button button--primary button--block product-card__cta"
+                  type="button"
+                  data-product-id="2">
+                  Adicionar ao carrinho
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- Produto 3 — Tênis Trail Pro -->
+          <li class="product-grid__item">
+            <article class="product-card">
+              <span class="badge badge--warning product-card__badge">Novo</span>
+
+              <a class="product-card__link" href="pages/produto.html" aria-label="Ver Tênis Trail Pro">
+                <img
+                  class="product-card__image"
+                  src="assets/img/products/tenis-trail.jpg"
+                  alt="Tênis Trail Pro verde"
+                  loading="lazy"
+                  width="600" height="450">
+              </a>
+
+              <div class="product-card__body">
+                <h3 class="product-card__title">
+                  <a class="product-card__title-link" href="pages/produto.html">Tênis Trail Pro</a>
+                </h3>
+                <p class="product-card__description">
+                  Para trilhas e terrenos irregulares.
+                </p>
+
+                <div class="product-card__pricing">
+                  <span class="product-card__price">R$ 429,90</span>
+                </div>
+
+                <button
+                  class="button button--primary button--block product-card__cta"
+                  type="button"
+                  data-product-id="3">
+                  Adicionar ao carrinho
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- Produto 4 — Camiseta Dry Fit -->
+          <li class="product-grid__item">
+            <article class="product-card">
+              <span class="badge badge--success product-card__badge">-25%</span>
+
+              <a class="product-card__link" href="pages/produto.html" aria-label="Ver Camiseta Dry Fit">
+                <img
+                  class="product-card__image"
+                  src="assets/img/products/camiseta-dry.jpg"
+                  alt="Camiseta Dry Fit preta"
+                  loading="lazy"
+                  width="600" height="450">
+              </a>
+
+              <div class="product-card__body">
+                <h3 class="product-card__title">
+                  <a class="product-card__title-link" href="pages/produto.html">Camiseta Dry Fit</a>
+                </h3>
+                <p class="product-card__description">
+                  Tecido tecnológico com secagem rápida.
+                </p>
+
+                <div class="product-card__pricing">
+                  <span class="product-card__price-old">R$ 119,00</span>
+                  <span class="product-card__price">R$ 89,25</span>
+                </div>
+
+                <button
+                  class="button button--primary button--block product-card__cta"
+                  type="button"
+                  data-product-id="4">
+                  Adicionar ao carrinho
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- Produto 5 — Mochila Running -->
+          <li class="product-grid__item">
+            <article class="product-card">
+              <a class="product-card__link" href="pages/produto.html" aria-label="Ver Mochila Running">
+                <img
+                  class="product-card__image"
+                  src="assets/img/products/mochila-running.jpg"
+                  alt="Mochila Running cinza"
+                  loading="lazy"
+                  width="600" height="450">
+              </a>
+
+              <div class="product-card__body">
+                <h3 class="product-card__title">
+                  <a class="product-card__title-link" href="pages/produto.html">Mochila Running</a>
+                </h3>
+                <p class="product-card__description">
+                  Compacta, leve e impermeável.
+                </p>
+
+                <div class="product-card__pricing">
+                  <span class="product-card__price">R$ 189,90</span>
+                </div>
+
+                <button
+                  class="button button--primary button--block product-card__cta"
+                  type="button"
+                  data-product-id="5">
+                  Adicionar ao carrinho
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- Produto 6 — Boné Sport -->
+          <li class="product-grid__item">
+            <article class="product-card">
+              <span class="badge badge--danger product-card__badge">-40%</span>
+
+              <a class="product-card__link" href="pages/produto.html" aria-label="Ver Boné Sport">
+                <img
+                  class="product-card__image"
+                  src="assets/img/products/bone-sport.jpg"
+                  alt="Boné Sport preto"
+                  loading="lazy"
+                  width="600" height="450">
+              </a>
+
+              <div class="product-card__body">
+                <h3 class="product-card__title">
+                  <a class="product-card__title-link" href="pages/produto.html">Boné Sport</a>
+                </h3>
+                <p class="product-card__description">
+                  Ajuste perfeito e proteção UV.
+                </p>
+
+                <div class="product-card__pricing">
+                  <span class="product-card__price-old">R$ 99,00</span>
+                  <span class="product-card__price">R$ 59,40</span>
+                </div>
+
+                <button
+                  class="button button--primary button--block product-card__cta"
+                  type="button"
+                  data-product-id="6">
+                  Adicionar ao carrinho
+                </button>
+              </div>
+            </article>
+          </li>
+
+        </ul>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       BLOCO: footer
+       ============================================================ -->
+  <footer class="footer" id="contato" role="contentinfo">
+    <div class="container footer__container">
+      <p class="footer__copy">© 2025 MinhaLoja — Todos os direitos reservados.</p>
+      <ul class="footer__social social-list">
+        <li class="social-list__item">
+          <a class="social-list__link" href="#">Instagram</a>
+        </li>
+        <li class="social-list__item">
+          <a class="social-list__link" href="#">Twitter</a>
+        </li>
+        <li class="social-list__item">
+          <a class="social-list__link" href="#">YouTube</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

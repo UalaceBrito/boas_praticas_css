@@ -1,0 +1,13 @@
+@use '../abstracts/placeholders';
+
+.visually-hidden {
+  @extend %visually-hidden;
+}
+
+.u-hidden-mobile {
+  @media (max-width: 767px) { display: none !important; }
+}
+
+.u-hidden-desktop {
+  @media (min-width: 768px) { display: none !important; }
+}

@@ -1,0 +1,23 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.footer {
+  background: linear-gradient(180deg, $color-neutral-900 0%, #0f0d0c 100%);
+  color: $color-neutral-100;
+  padding-block: $space-8;
+  margin-top: $space-16;
+  border-top: 1px solid rgba($color-neutral-200, 0.08);
+
+  &__container {
+    @include flex-between;
+    gap: $space-4;
+    flex-wrap: wrap;
+  }
+
+  &__copy {
+    font-size: $font-size-sm;
+    color: rgba($color-neutral-100, 0.72);
+  }
+
+  &__social { }
+}
